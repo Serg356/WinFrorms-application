@@ -4,7 +4,6 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using Microsoft.SolverFoundation.Common;
 namespace ArithmeticCoding
 {
     class ArithmeticCoding
