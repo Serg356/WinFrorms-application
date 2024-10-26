@@ -40,7 +40,6 @@ namespace ArithmeticCoding
         }
         public static Dictionary<char, double> createCharFreq(Dictionary<char, int> counts) {
             Dictionary<char, double> freqs = new Dictionary<char, double>();
-            //int cnt = counts.Keys.Sum(ch => counts[ch]);
             int cnt = counts.Values.Sum();
             
             foreach (var pair in counts)
@@ -64,18 +63,7 @@ namespace ArithmeticCoding
             }
             return segments;
         }
-        //public static double encode(Dictionary<char, Segment> segments, String text)
-        //{
-        //    double left = 0;
-        //    double right = 1;
-        //    foreach (var ch in text)
-        //    {
-        //        double lenght = right - left;
-        //        right = left + lenght * segments[ch].right;
-        //        left = left + lenght * segments[ch].left;
-        //    }
-        //    return (left + right) / 2;
-        //}
+
         public static double encode(String text)
         {
             charCounts = new Dictionary<char, int>();
@@ -85,9 +73,6 @@ namespace ArithmeticCoding
             double right = 1;
             foreach (var ch in text)
             {
-                //double lenght = right - left;
-                //right = left + lenght * segments[ch].right;
-                //left = left + lenght * segments[ch].left;
                 double newLeft = left + (right - left) * segments[ch].left;
                 double newRight = left + (right - left) * segments[ch].right;
                 left = newLeft;
@@ -119,24 +104,7 @@ namespace ArithmeticCoding
             }
             return text.ToString();
         }
-        //public static String decode(Dictionary<char, Segment> segments, double code, int textLenght)
-        //{
-        //    StringBuilder text = new StringBuilder();
-        //    double left = 0;
-        //    double right = 1;
-        //    int ind = 0;
-        //    var sortedSegments = segments.OrderBy((c) => (c.Value.right, c.Value.left)).ToArray();
-        //    for (int i = 0; i < textLenght; i++)
-        //    {
-        //        ind = binarySearch(code, sortedSegments, left, right);
-        //        double newLeft = left + (right - left) * sortedSegments[ind].Value.left;
-        //        double newRight = left + (right - left) * sortedSegments[ind].Value.right;
-        //        text.Append(sortedSegments[ind].Key);
-        //        left = newLeft;
-        //        right = newRight;
-        //    }
-        //    return text.ToString();
-        //}
+        
         static int binarySearch(double code, KeyValuePair<char, Segment>[] sortedSegments, double left, double right)
         {
             int leftIndex = 0;
