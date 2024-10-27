@@ -38,25 +38,11 @@ namespace Kursach
             this.Opacity = Math.Exp(-8);
             smoothTimer.Start();
 
-            //Opacity = 0;
-            //double sep = 0.05;
-            //smoothTimer = new System.Windows.Forms.Timer();
-            //smoothTimer.Tick += new EventHandler((s, e1) =>
-            //    {
-            //        if (this.Opacity < 1)
-            //        {
-            //            this.Opacity += sep;
-            //        }
-
-            //    }
-            //);
-            //smoothTimer.Interval = 100;
-            //smoothTimer.Start();
         }
+
         private void SplashScreen_Load(object sender, EventArgs e)
         {
             timer = new System.Windows.Forms.Timer();
-            //timer.Interval = 2060;
             timer.Interval = 1500;
             Opacity = 0;
             Show();
