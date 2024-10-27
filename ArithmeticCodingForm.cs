@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ArithmeticCoding;
-using Microsoft.SolverFoundation.Common;
 namespace Kursach
 {
     public partial class ArithmeticCodingForm : Form
@@ -46,42 +45,12 @@ namespace Kursach
 
 
         }
-        //private void draw()
-        //{
-
-        //    if (g == null)
-        //    {
-        //        return;
-        //    }
-        //    var panel = splitContainer1.Panel1;
-        //    g = panel.CreateGraphics();
-        //    //g.DrawRectangle(new Pen(Color.Green, Width * 0.005f), g.VisibleClipBounds.X, g.VisibleClipBounds.Y, g.VisibleClipBounds.Width, g.VisibleClipBounds.Height);
-        //    var lineWidth = 0.005f * panel.Width;
-        //    //g.DrawLine(new Pen(Color.Black, lineWidth), 0, 0, panel.Width, panel.Height);
-        //    var start = new PointF(panel.Width * 0.3f, panel.Height * 0.1f);
-        //    var end = new PointF(start.X + panel.Width * 0.3f, start.Y);
-        //    var length = end.X - start.X;
-        //    g.DrawLine(new Pen(Color.Black, lineWidth), start, end);
-        //    float coord = length * (float)code + start.X;
-        //    g.DrawLine(new Pen(Color.Cyan, lineWidth), coord, start.Y, coord, start.Y + 0.1f * length);
-        //    g.DrawString(code.ToString("0.##"), new Font(panel.Font.FontFamily, 13), new SolidBrush(panel.ForeColor), coord - 22, start.Y + 0.1f*length);
-        //    foreach (var pair in ArithmeticCoding.ArithmeticCoding.createCharFreq(ArithmeticCoding.ArithmeticCoding.charCounts))
-        //    {
-        //        var ch = pair.Key;
-        //        var freq = pair.Value;
-        //        float x = length * (float)freq + start.X;
-        //        g.DrawLine(new Pen(Color.Black, lineWidth), x, start.Y, x, start.Y + 0.1f * length);
-        //        //g.DrawString(freq.ToString("0.##"), new Font(panel.Font.FontFamily, 13), new SolidBrush(panel.ForeColor), x, start.Y + 0.1f);
-        //    }
-
-
-        //}
+ 
         public void ArithmeticCodingForm_Load(object sender, EventArgs e)
         {
             inputTextTextBox.Text = inputText;
             code = ArithmeticCoding.ArithmeticCoding.encode(inputText);
             if (code == -1) { MessageBox.Show("Файл cлишком большой", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); Close(); }
-            //line = new SegmentLine(Width * 0.3f, Height * 0.1f, Width*0.3f, Color.Black);
             line = new SegmentLine(0, Height * 0.1f, Width * 0.3f, Color.Black);
             listBox1.Items.Clear();
             foreach (var pair in ArithmeticCoding.ArithmeticCoding.charCounts)
@@ -102,7 +71,6 @@ namespace Kursach
         private void increaseSizeButton_Click(object sender, EventArgs e)
         {
             line.zoom(1.5f);
-            //linePanel.Width = (int)(line.X + line.Length) + 1;
             this.Refresh();
 
             draw();
@@ -119,7 +87,6 @@ namespace Kursach
         {
             if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
             {
-                //line.move(drawingPanel.AutoScrollPosition.X, drawingPanel.AutoScrollPosition.Y);
                 line.move(e.OldValue - e.NewValue, 0);
 
             }
@@ -134,7 +101,6 @@ namespace Kursach
         {
             drawingPanel.AutoScrollMinSize = new Size((int)(line.Length), drawingPanel.Height);
             draw();
-            //g.TranslateTransform(drawingPanel.AutoScrollPosition.X, drawingPanel.AutoScrollPosition.Y);
 
         }
 
@@ -157,7 +123,6 @@ namespace Kursach
                     return;
                 }
                 var bw = new BinaryWriter(saveFileDialog1.OpenFile());
-                //if (code.Numerator > int.MaxValue || code.Denominator > int.MaxValue) { MessageBox.Show("ПЕреполнение"); }
                 bw.Write(code);
                 bw.Write(inputText.Length);
                 foreach (var pair in ArithmeticCoding.ArithmeticCoding.charCounts)
@@ -197,7 +162,6 @@ namespace Kursach
         public Color CodeColor { get; set; } = Color.YellowGreen;
         public Color SelectionColor { get; set; } = Color.Green;
         public Segment SelectedSegment { get; set; } = new Segment(-1, -1);
-        //public float Width { get; set; } = 1.0f;
         public SegmentLine(float x, float y, float length, Color color)
         {
             X = x;
@@ -205,11 +169,7 @@ namespace Kursach
             Length = length;
             LineColor = color;
         }
-        //private void drawSegment(Graphics g, Segment seg)
-        //{
-        //    g.DrawLine(new Pen(SegmentStartColor, Length * 0.005f), X + Length * (float)seg.left, Y, X + Length * (float)seg.left, Y + 0.1f*Length);
-        //    g.DrawLine(new Pen(SegmentEndColor, Length * 0.005f), X + Length * (float)seg.right, Y, X + Length * (float)seg.right, Y + 0.1f * Length);
-        //}
+ 
         public void draw(Graphics g, float code, Dictionary<char, Segment> segments)
         {
             var color = SegmentEndColor;
