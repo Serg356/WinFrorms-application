@@ -35,7 +35,7 @@ namespace Kursach
             }
             );
             smoothTimer.Interval = 100;
-            this.Opacity = Math.Exp(-7);
+            this.Opacity = Math.Exp(-8);
             smoothTimer.Start();
 
             //Opacity = 0;
