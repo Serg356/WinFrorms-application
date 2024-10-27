@@ -56,7 +56,7 @@ namespace Kursach
         private void SplashScreen_Load(object sender, EventArgs e)
         {
             timer = new System.Windows.Forms.Timer();
-            //timer.Interval = 2050;
+            //timer.Interval = 2060;
             timer.Interval = 1500;
             Opacity = 0;
             Show();
